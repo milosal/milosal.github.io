@@ -81,16 +81,20 @@
               </li>
               {%- else %}
               <li class="nav-item {% if page.url contains p.permalink %}active{% endif %}">
-                {%- if p.permalink contains '/blog/' %}
-                {%- assign url = '/blog/' -%}
+                {%- if p.url contains 'blog' -%}
+                  <a class="nav-link" href="https://ameliorology.substack.com">{{ p.title }}</a>
                 {%- else -%}
-                {%- assign url = p.url -%}
-                {%- endif -%}
-                <a class="nav-link" href="https://ameliorology.substack.com/">{{ p.title }}
-                  {%- if page.url contains p.url -%}
-                  <span class="sr-only">(current)</span>
+                  {%- if p.permalink contains '/blog/' %}
+                    {%- assign url = '/blog/' -%}
+                  {%- else -%}
+                    {%- assign url = p.url -%}
                   {%- endif -%}
-                </a>
+                  <a class="nav-link" href="{{ url | relative_url }}">{{ p.title }}
+                    {%- if page.url contains p.url -%}
+                    <span class="sr-only">(current)</span>
+                    {%- endif -%}
+                  </a>
+                  {%- endif -%}
               </li>
               {%- endif -%}
               {%- endif -%}
